@@ -26,7 +26,8 @@ function validatePassword(password) {
 }
 
 // Registration Form Validation
-document.getElementById('registrationForm').addEventListener('submit', function (event) {
+document.getElementById('registrationForm').addEventListener('submit', function (event) { // ERROR // Uncaught TypeError: Cannot read properties of null (reading 'addEventListener')
+																																																   // at script.js:29:44
 	event.preventDefault(); // Prevent the default form submission behavior
 
 	// Clear previous error messages
