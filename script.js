@@ -1,3 +1,5 @@
+
+
 // Function to set data in local storage
 function setData(key, value) {
 	localStorage.setItem(key, value);
@@ -25,102 +27,103 @@ function validatePassword(password) {
 	return passwordRegex.test(password);
 }
 
-// Registration Form Validation
-document.getElementById('registrationForm').addEventListener('submit', function (event) { // ERROR // Uncaught TypeError: Cannot read properties of null (reading 'addEventListener')
-																																																   // at script.js:29:44
-	event.preventDefault(); // Prevent the default form submission behavior
+function loadpageIndex() {
+	// Registration Form Validation
+	document.getElementById('registrationForm').addEventListener('submit', function (event) {
+		event.preventDefault(); // Prevent the default form submission behavior
 
-	// Clear previous error messages
-	clearErrors();
+		// Clear previous error messages
+		clearErrors();
 
-	// Get form inputs
-	const email = document.getElementById('email').value;
-	const password = document.getElementById('password').value;
-	const confirmPassword = document.getElementById('confirmPassword').value;
+		// Get form inputs
+		const email = document.getElementById('email').value;
+		const password = document.getElementById('password').value;
+		const confirmPassword = document.getElementById('confirmPassword').value;
 
-	// Validate email
-	if (!validateEmail(email)) {
-		showError('email', 'Invalid email');
-		return;
-	}
+		// Validate email
+		if (!validateEmail(email)) {
+			showError('email', 'Invalid email');
+			return;
+		}
 
-	// Validate password
-	if (!validatePassword(password)) {
-		showError('password', 'Invalid password');
-		return;
-	}
+		// Validate password
+		if (!validatePassword(password)) {
+			showError('password', 'Invalid password');
+			return;
+		}
 
-	// Validate password confirmation
-	if (password !== confirmPassword) {
-		showError('confirmPassword', 'Passwords do not match');
-		return;
-	}
+		// Validate password confirmation
+		if (password !== confirmPassword) {
+			showError('confirmPassword', 'Passwords do not match');
+			return;
+		}
 
-	// Store data in local storage
-	setData('email', email);
-	setData('password', password);
+		// Store data in local storage
+		setData('email', email);
+		setData('password', password);
 
-	// Redirect to user information page
-	window.location.href = 'user.html';
-});
+		// Redirect to user information page
+		window.location.href = 'user.html';
+	});
+}
+function loadpageUser() {
+	// User Info Form Validation
+	document.getElementById('userInfoForm').addEventListener('submit', function (event) {
+		event.preventDefault(); // Prevent the default form submission behavior
 
-// User Info Form Validation
-document.getElementById('userInfoForm').addEventListener('submit', function (event) {
-	event.preventDefault(); // Prevent the default form submission behavior
+		// Clear previous error messages
+		clearErrors();
 
-	// Clear previous error messages
-	clearErrors();
+		// Get form inputs
+		const name = document.getElementById('name').value;
+		const surname = document.getElementById('surname').value;
+		const birthYear = document.getElementById('birthYear').value;
+		const gender = document.getElementById('gender').value;
+		const phoneNumber = document.getElementById('phoneNumber').value;
+		const skype = document.getElementById('skype').value;
 
-	// Get form inputs
-	const name = document.getElementById('name').value;
-	const surname = document.getElementById('surname').value;
-	const birthYear = document.getElementById('birthYear').value;
-	const gender = document.getElementById('gender').value;
-	const phoneNumber = document.getElementById('phoneNumber').value;
-	const skype = document.getElementById('skype').value;
+		// Validate name
+		if (!validateName(name)) {
+			showError('name', 'Invalid name');
+			return;
+		}
 
-	// Validate name
-	if (!validateName(name)) {
-		showError('name', 'Invalid name');
-		return;
-	}
+		// Validate surname
+		if (!validateSurname(surname)) {
+			showError('surname', 'Invalid surname');
+			return;
+		}
 
-	// Validate surname
-	if (!validateSurname(surname)) {
-		showError('surname', 'Invalid surname');
-		return;
-	}
+		// Validate birth year
+		if (!validateBirthYear(birthYear)) {
+			showError('birthYear', 'Invalid birth year');
+			return;
+		}
 
-	// Validate birth year
-	if (!validateBirthYear(birthYear)) {
-		showError('birthYear', 'Invalid birth year');
-		return;
-	}
+		// Validate gender
+		if (!validateGender(gender)) {
+			showError('gender', 'Please select a gender');
+			return;
+		}
 
-	// Validate gender
-	if (!validateGender(gender)) {
-		showError('gender', 'Please select a gender');
-		return;
-	}
+		// Validate phone number
+		if (phoneNumber && !validatePhoneNumber(phoneNumber)) {
+			showError('phoneNumber', 'Invalid phone number');
+			return;
+		}
 
-	// Validate phone number
-	if (phoneNumber && !validatePhoneNumber(phoneNumber)) {
-		showError('phoneNumber', 'Invalid phone number');
-		return;
-	}
+		// Store data in local storage
+		setData('name', name);
+		setData('surname', surname);
+		setData('birthYear', birthYear);
+		setData('gender', gender);
+		setData('phoneNumber', phoneNumber);
+		setData('skype', skype);
 
-	// Store data in local storage
-	setData('name', name);
-	setData('surname', surname);
-	setData('birthYear', birthYear);
-	setData('gender', gender);
-	setData('phoneNumber', phoneNumber);
-	setData('skype', skype);
-
-	// Redirect to user information page
-	window.location.href = 'user.html';
-});
-
+		// Redirect to user information page
+		window.location.href = 'user.html';
+	});
+}
 // Validate name
 function validateName(name) {
 	const nameRegex = /^[a-zA-Z]+$/;
